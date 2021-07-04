@@ -5,7 +5,7 @@ using namespace std;
 class Solution {
  public:
   // Somewhat ugly code
-  int maxProfit(vector<int>& prices) {
+  int maxProfitUgly(const vector<int>& prices) {
     // Buy at the local minimum and sell at the local maximum
     int profit = 0;
     int buy = 0, sell = 0;
@@ -38,5 +38,13 @@ class Solution {
     }
     
     return profit;
+  }
+
+  // Although the question specified that we cannot buy and sell at the same day, this approach is equivalent to buy and sell at different days
+  int maxProfitBeautiful(const vector<int>& prices) {
+    int ret = 0;
+    for (size_t p = 1; p < prices.size(); ++p) 
+      ret += max(prices[p] - prices[p - 1], 0);    
+    return ret;
   }
 };
