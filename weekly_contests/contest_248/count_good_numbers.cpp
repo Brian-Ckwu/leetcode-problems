@@ -35,21 +35,18 @@ class Solution {
   }
 
   // Using recursion (faster) / Time complexity:
-  int pow_after_mod(unordered_map<int, int>& pow_results, int x, long long y) {
+  int pow_after_mod(int x, long long y) {
     long long for_mod = pow(10, 9) + 7;
 
     if (y <= 1) {
       return (int) pow(x, y);
     }
 
-    if (pow_results.find(y) != pow_results.end()) {
-      return pow_results[y];
-    }
-
+    int p = pow_after_mod(x, y/2);
     if (y % 2 == 0) {
-      return pow_results[y] = ((long long) pow_after_mod(pow_results, x, y/2) * pow_after_mod(pow_results, x, y/2)) % for_mod;
+      return ((long long) p * p) % for_mod;
     } else {
-      return pow_results[y] = ((long long) pow_after_mod(pow_results, x, y/2) * pow_after_mod(pow_results, x, y/2 + 1)) % for_mod;
+      return ((long long) p * p * x) % for_mod;
     }
   }
 
@@ -59,10 +56,8 @@ class Solution {
     long long ans = 1;
 
     int for_mod = pow(10, 9) + 7; // below INT_MAX
-    unordered_map<int, int> pow_results;
-    int fives = pow_after_mod(pow_results, 5, evens);
-    pow_results.clear();
-    int fours = pow_after_mod(pow_results, 4, odds);
+    int fives = pow_after_mod(5, evens);
+    int fours = pow_after_mod(4, odds);
 
     ans = ((long long) fives * fours) % for_mod;
 
