@@ -1,4 +1,5 @@
 #include <iostream>
+#include <climits>
 
 using namespace std;
 
@@ -12,7 +13,8 @@ struct ListNode {
  
 class Solution {
  public:
-  ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+  // first attempt: hard to follow
+  ListNode* mergeTwoListsFirst(ListNode* l1, ListNode* l2) {
     if (l1 == nullptr || l2 == nullptr) {
       return (l1 ? l1 : l2);
     }
@@ -42,6 +44,30 @@ class Solution {
     
     return head;
   }
+
+  // Using dummy node: cleaner
+  ListNode* mergeTwoListsDummy(ListNode* l1, ListNode* l2) {
+    if (l1 == nullptr || l2 == nullptr) {
+      return l1 ? l1 : l2;
+    }
+    ListNode* dummy = new ListNode(INT_MIN);
+    ListNode* node = dummy;
+    
+    while (l1 && l2) {
+      if (l1->val <= l2->val) {
+        node->next = l1;
+        l1 = l1->next;
+      } else {
+        node->next = l2;
+        l2 = l2->next;
+      }
+      node = node->next;
+    }
+    
+    node->next = l1 ? l1 : l2; // concatenate the remaining nodes
+    
+    return dummy->next;
+  }
 };
 
 void printList(ListNode* node) {
@@ -65,7 +91,7 @@ int main() {
 
   Solution sol;
 
-  printList(sol.mergeTwoLists(l1, l2));
+  printList(sol.mergeTwoListsDummy(l1, l2));
 
   return 0;
 }
