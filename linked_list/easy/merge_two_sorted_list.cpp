@@ -47,7 +47,7 @@ class Solution {
 
   // Using dummy node: cleaner
   ListNode* mergeTwoListsDummy(ListNode* l1, ListNode* l2) {
-    if (l1 == nullptr || l2 == nullptr) {
+    if (l1 == nullptr || l2 == nullptr) { // This is not actually necessary. See the modified solution below.
       return l1 ? l1 : l2;
     }
     ListNode* dummy = new ListNode(INT_MIN);
@@ -65,6 +65,27 @@ class Solution {
     }
     
     node->next = l1 ? l1 : l2; // concatenate the remaining nodes
+    
+    return dummy->next;
+  }
+
+  // Even cleaner solution
+  ListNode* mergeTwoListsCleaner(ListNode* l1, ListNode* l2) {
+    ListNode* dummy = new ListNode(INT_MIN);
+    ListNode* tail = dummy; // change the pointer name to tail: more meaningful
+    
+    while (l1 && l2) {
+      if (l1->val <= l2->val) {
+        tail->next = l1;
+        l1 = l1->next;
+      } else {
+        tail->next = l2;
+        l2 = l2->next;
+      }
+      tail = tail->next;
+    }
+    
+    tail->next = l1 ? l1 : l2; // this statement will handle the situation of l1 == nullptr or l2 == nullptr automatically
     
     return dummy->next;
   }
@@ -91,7 +112,7 @@ int main() {
 
   Solution sol;
 
-  printList(sol.mergeTwoListsDummy(l1, l2));
+  printList(sol.mergeTwoListsCleaner(l1, l2));
 
   return 0;
 }
