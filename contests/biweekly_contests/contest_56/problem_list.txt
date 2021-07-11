@@ -1,0 +1,12 @@
+https://leetcode.com/contest/biweekly-contest-56/
+
+1. Count Square Sum Triples
+
+2. Nearest Exit from Entrance in Maze
+   - Topics: BFS, DFS, DP
+
+3. Sum Game
+   - Topics: Greedy algorithm
+
+4. Minimum Cost to Reach Destination in Time
+   - Topics: DP

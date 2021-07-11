@@ -1,0 +1,13 @@
+https://leetcode.com/contest/weekly-contest-248/
+
+1. Build array from permutation
+   - Follow-up: O(1) memory solution
+
+2. Eliminate maximum number of monsters
+   - Topics: greedy algorithm
+
+3. Count good numbers
+   - Topics: recursion, math
+  
+4. Longest common subpath
+   - Topics: binary search, rolling hash
