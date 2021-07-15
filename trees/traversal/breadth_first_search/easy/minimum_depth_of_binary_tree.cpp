@@ -47,6 +47,33 @@ class Solution {
     return tree_height;
   }
 
+  // logically clearer BFS solution (doesn't have to keep track of the last element of the level)
+  int minDepthClearer(TreeNode* root) {
+    if (!root)
+      return 0;
+    
+    queue<TreeNode*> q;
+    q.push(root);
+    int height = 0;
+    
+    while (!q.empty()) {
+      ++height;
+      
+      int k = q.size();
+      for (int i = 0; i < k; ++i) { // becareful: q.size() will be modified in the loop, should assign it outside
+        TreeNode* node = q.front(); q.pop();
+        if (!node->left && !node->right)
+          return height;
+        if (node->left)
+          q.push(node->left);
+        if (node->right)
+          q.push(node->right);
+      }
+    }
+  
+    throw "This line should not be executed.";
+  }
+  
   // first DFS solution
   // time complexity: O(n) for every possible tree (must search every node)
   int minDepthDFSFirst(TreeNode* root) {
@@ -62,6 +89,19 @@ class Solution {
     int righth = (root->right) ? 1 + minDepthBFSFirst(root->right): INT_MAX;
     
     return min(lefth, righth);
+  }
+
+  // concise DFS solution
+  int minDepthConcise(TreeNode* root) {
+    if (!root)
+      return 0;
+    // if (!root->left && !root->right) // this conditional is not necessary because the below one include two situations: only the right child exists or both not exists
+    //   return 1;
+    if (!root->left)
+      return 1 + minDepthConcise(root->right);
+    if (!root->right)
+      return 1 + minDepthConcise(root->left);
+    return 1 + min(minDepthConcise(root->left), minDepthConcise(root->right));
   }
 
 };
