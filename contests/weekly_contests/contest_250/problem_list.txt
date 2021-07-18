@@ -8,5 +8,6 @@ https://leetcode.com/discuss/general-discussion/1344867/weekly-contest-250
    - Use division to reduce complexity
 
 3. Maximum Number of Points with Cost
+   - Dynamic programming: naive solution -> O(m*n^2) / with optimization -> O(mn)
 
 4. Maximum Genetic Difference Query
