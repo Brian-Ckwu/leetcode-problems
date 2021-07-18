@@ -1,0 +1,12 @@
+https://leetcode.com/discuss/general-discussion/1344867/weekly-contest-250
+
+1. Maximum Number of Words You Can Type
+   - Naive: O(text * brokenLetter)
+   - Hashset: O(text)
+
+2. Add Minimum Number of Rungs
+   - Use division to reduce complexity
+
+3. Maximum Number of Points with Cost
+
+4. Maximum Genetic Difference Query
