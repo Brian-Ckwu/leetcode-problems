@@ -1,0 +1,4 @@
+1. Sum of Digits of String After Convert
+2. Largest Number After Mutating Substring
+3. Maximum Compatibility Score Sum
+4. Delete Duplicate Folders in System
