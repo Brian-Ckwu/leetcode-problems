@@ -66,6 +66,29 @@ class Solution {
     return values;   
   }
 
+  // another approach (document the last visited node)
+  vector<int> postorderTraversal(TreeNode* root) {
+    vector<int> res;
+    stack<TreeNode*> nodes;
+    TreeNode* visited = nullptr;
+    while (root || !nodes.empty()) {
+      while (root) {
+        nodes.push(root);
+        root = root->left;
+      }
+      root = nodes.top();
+      if (root->right == nullptr || root->right == visited) {
+        res.push_back(root->val);
+        nodes.pop();
+        visited = root;
+        root = nullptr;
+      } else {
+        root = root->right;
+      }
+    }
+    return res;
+  }
+
   // 3. Morris traversal (time: O(n) / space: O(1))
 
 };
