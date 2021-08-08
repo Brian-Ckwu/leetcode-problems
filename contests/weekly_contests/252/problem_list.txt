@@ -1,0 +1,4 @@
+Three Divisors
+Maximum Number of Weeks for Which You Can Work
+Minimum Garden Perimeter to Collect Enough Apples
+Count Number of Special Subsequences
